@@ -31,17 +31,19 @@ public class ApiController {
         return "address saved - "+savedAddress.getId();
 
     }
+    //Creating the user address
 
     @GetMapping(value = "/")
     public String getPage() {
         return "Hello there!";
     }
+    //Getting the message that restapi is up
 
     @GetMapping(value = "/users")
     public List<User> getUsers() {
         return userRepo.findAll();
     }
-
+    //Listing the users
 
     @GetMapping(value = "/users/{id}")
     public String getUsersByIds(@PathVariable Long id) {
@@ -58,14 +60,14 @@ public class ApiController {
         }
         return "User Not found with id-" + id;
     }
-
+    // listing the user based on id
 
     @PostMapping(value = "/save")
     public String saveUsers(@RequestBody User user) {
         userRepo.save(user);
         return "saved user id - " + user.getId();
     }
-
+    // Saving the user
     @PutMapping(value = "update/{id}")
     public String updateUsers(@PathVariable long id, @RequestBody User user) {
         User updatedUser = userRepo.findById(id).get();
@@ -76,4 +78,5 @@ public class ApiController {
         userRepo.save(updatedUser);
         return "updated...";
     }
+    //updating the user based on id
 }
